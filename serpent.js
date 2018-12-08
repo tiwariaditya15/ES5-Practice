@@ -81,6 +81,7 @@ console.log (`My name is ${a} ${b}.`);
 
 //More Practical way of using destructuring 
 
+/*
 function calcAgeRetirement (year) {
 	const now = new Date().getFullYear();
 	return [ now - year, 65 - (now - year)];
@@ -90,3 +91,38 @@ function calcAgeRetirement (year) {
 var [age, retiremment] = calcAgeRetirement(1990);
 
 console.log (`The age is ${age} and retiremment duration is ${retiremment}`);
+*/
+
+
+//Operation difference between arrays in ES5 and ES6 
+
+//First selecting all boxes over html page
+
+var boxes = document.querySelectorAll('.box');
+
+//Now this querySelectorAll method return "NodeList" so we cant access each element using forEach
+//To convert boxes nodelist in array using ES5 way
+
+var boxesArray5 = Array.prototype.slice.call(boxes);
+
+boxesArray5.forEach(function(cur) {
+
+	cur.style.backgroundColor = 'aqua';
+});
+
+
+//now to do same operation done in ES5 would go like this ES6
+
+const boxesArray6 = Array.from(boxes);
+
+//using an for of loop with array
+
+for (const curEl of boxesArray6) {
+	if ( curEl.className === 'box blue') {
+		continue;
+	}
+	curEl.style.backgroundColor = 'grey';
+	curEl.textContent = 'I\'m changed..';
+}
+
+
