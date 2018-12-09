@@ -192,7 +192,7 @@ function isFullAge () {
 
 function fullAge6( ...years) {
 	years.forEach( cur => console.log((2018 - cur) >= 18));
-};
+ };
 
 fullAge6(1989, 2002, 2006, 1999, 1949);
 */
@@ -224,6 +224,7 @@ console.log(emily);
 //maps in ES6
 //maps were introduced in ES6 as key-value data structure
 
+/*
 const profession = new Map();
 
 profession.set(1, 'programmer');
@@ -261,3 +262,52 @@ const ans = parseInt(prompt("What is your choice from 1 and 2?"));
 				}
 			}	
 	}
+
+*/
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Classes in ES6
+//onee of the biggest addition in ES6
+//Earlier we were using function constructor in ES5 to implement classes
+
+//In ES5
+
+var Person = function( name, year, occupation){
+	this.name = name;
+	this.year = year;
+	
+	this.occupation = occupation;
+};
+
+Person.prototype.showy = function() {
+	console.log ("My name is " + this.name + " . I\'m " + (new Date().getFullYear() - this.year) + " years old. I work as  " + this.occupation +" in my life.");
+};
+
+var pankaj = new Person('Pankaj', 1989, 'Programmer');
+console.log(pankaj);
+
+pankaj.showy();
+
+//In ES6 after classes were introduced
+
+class Person6 {
+	constructor (name, year, occupation) {
+		this.name = name;
+		this.year = year;
+		this.occupation = occupation;
+	}
+	
+	showy() {
+		console.log(`Hello there, My name is ${this.name} and i\'m ${new Date().getFullYear() - this.year } . My occuaption is ${this.occupation}`);
+	}
+	
+	static greeting () {
+		console.log(`Hello World..`);
+	}
+}
+
+Person6.greeting();
+const age = new Person6('Aditya', 1999, 'Student');
+age.showy();
