@@ -274,6 +274,7 @@ const ans = parseInt(prompt("What is your choice from 1 and 2?"));
 
 //In ES5
 
+/*
 var Person = function( name, year, occupation){
 	this.name = name;
 	this.year = year;
@@ -311,3 +312,69 @@ class Person6 {
 Person6.greeting();
 const age = new Person6('Aditya', 1999, 'Student');
 age.showy();
+*/
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//classes with sub-classes i.e. implementing inheritance
+
+//Inheritance in ES5
+var Person = function( name, year, occupation){
+	this.name = name;
+	this.year = year;
+	
+	this.occupation = occupation;
+};
+
+Person.prototype.showy = function() {
+	console.log ("My name is " + this.name + " . I\'m " + (new Date().getFullYear() - this.year) + " years old. I work as  " + this.occupation +" in my life.");
+};
+
+var athlete5 = function (name, year, occupation, sal, medals) {
+	Person.call(this, name, year, occupation);
+	this.sal = sal;
+	this.medals = medals;
+};
+
+//this line connects constructor of athlete prototype with person protype
+athlete5.prototype = Object.create(Person.prototype);
+var phelps = new athlete5('Michael', 1989, 'swimmer', 10000, 9);
+phelps.showy();
+console.log(phelps);
+
+//Inheitance in ES6 using sub-classes
+
+class Person6 {
+	constructor (name, year, occupation) {
+		this.name = name;
+		this.year = year;
+		this.occupation = occupation;
+	}
+	
+	showy() {
+		console.log(`Hello there, My name is ${this.name} and i\'m ${new Date().getFullYear() - this.year } . My occuaption is ${this.occupation}`);
+	}
+	
+	static greeting () {
+		console.log(`Hello World..`);
+	}
+}
+
+
+class athlete6 extends Person6 {
+	
+	constructor(name, year, occupation, sal, medals){
+		super(name, year, occupation);
+		this.sal = sal;
+		this.medals = medals;
+	}
+	
+	wonMedals() {
+		console.log(`Won medals are ${++this.medals}`);
+	}
+}
+
+var phelps6 = new athlete6('phelps', 1989, 'Swimmer', 10000, 9);
+console.log(phelps6);
+
+phelps6.wonMedals();
